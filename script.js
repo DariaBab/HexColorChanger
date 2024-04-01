@@ -6,17 +6,18 @@ function isValidHexColor(color) {
 document.addEventListener('DOMContentLoaded', function() {
     const changeColorBtn = document.getElementById('changeColorBtn');
     const colorInput = document.getElementById('colorInput');
+    const colorPicker = document.getElementById('colorPicker');
+
+    colorPicker.addEventListener('input', function() {
+        const colorValue = colorPicker.value;
+        document.body.style.backgroundColor = colorValue;
+    });
 
     changeColorBtn.addEventListener('click', function() {
         const colorValue = colorInput.value.trim();
 
-        if (!colorValue) {
-            alert('Please enter a valid hex color code.');
-            return;
-        }
-
         if (!isValidHexColor(colorValue)) {
-            alert('Invalid hex color code. Please use the format #XXXXXX or #XXX.');
+            alert(colorValue ? 'Invalid hex color code. Please use the format #XXXXXX or #XXX.' : 'Please enter a valid hex color code.');
             return;
         }
 
